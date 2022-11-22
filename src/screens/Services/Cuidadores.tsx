@@ -1,6 +1,6 @@
 import React from "react";
-import { View } from "react-native";
-import { MainStackParamList } from "../types/navigation";
+import { FlatList, ListRenderItemInfo, View } from "react-native";
+import { ServicesPagesParamList } from "../../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import {
   Layout,
@@ -13,16 +13,24 @@ import {
   themeColor,
 } from "react-native-rapi-ui";
 import { Ionicons } from "@expo/vector-icons";
-import { supabase } from "../initSupabase";
+import { RenderFunc } from "../../components/RenderFunc";
+import { cuidadores, Funcionario } from "../../data/funcList";
+import { SeparatorItem } from "../../components/SeparatorItem/SeparatorItem";
 
 export default function ({
   navigation,
-}: NativeStackScreenProps<MainStackParamList, "MainTabs">) {
+}: NativeStackScreenProps<ServicesPagesParamList, "Cuidadores">) {
+
   const { isDarkmode, setTheme } = useTheme();
+  
+  function renderItem({ item }: ListRenderItemInfo<Funcionario>) {
+    return <RenderFunc {...item} />;
+  }
+
   return (
     <Layout>
       <TopNav
-        middleContent="Home"
+        middleContent="Cuidadores"
         rightContent={
           <Ionicons
             name={isDarkmode ? "sunny" : "moon"}
@@ -45,24 +53,12 @@ export default function ({
           justifyContent: "center",
         }}
       >
-        <Text>Pedreiros</Text>
-        
-        <Button
-              status="danger"
-              text="Logout"
-              onPress={async () => {
-                const { error } = await supabase.auth.signOut();
-                if (!error) {
-                  alert("Signed out!");
-                }
-                if (error) {
-                  alert(error.message);
-                }
-              }}
-              style={{
-                marginTop: 10,
-              }}
-            />
+        <FlatList
+          ItemSeparatorComponent={SeparatorItem}
+          data={cuidadores}
+          keyExtractor={(item) => item.name}
+          renderItem={renderItem}
+        />
       </View>
     </Layout>
   );

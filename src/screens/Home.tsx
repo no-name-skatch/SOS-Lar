@@ -18,7 +18,9 @@ import { Ionicons } from "@expo/vector-icons";
 export default function ({
   navigation,
 }: NativeStackScreenProps<MainStackParamList, "MainTabs">) {
+
   const { isDarkmode, setTheme } = useTheme();
+
   return (
     <Layout>
       <TopNav
@@ -51,15 +53,7 @@ export default function ({
               Serviços
             </Text>
             <Button
-              style={{ marginTop: 10 }}
-              text="Rapi UI Documentation"
-              status="info"
-              onPress={() => {
-                navigation.navigate("Pedreiros");
-              }}
-            />
-            <Button
-              text="Go to second screen"
+              text="Pedreiros"
               onPress={() => {
                 navigation.navigate("SecondScreen");
               }}
@@ -68,20 +62,28 @@ export default function ({
               }}
             />
             <Button
-              status="danger"
-              text="Logout"
-              onPress={async () => {
-                const { error } = await supabase.auth.signOut();
-                if (!error) {
-                  alert("Signed out!");
-                }
-                if (error) {
-                  alert(error.message);
-                }
-              }}
-              style={{
-                marginTop: 10,
-              }}
+              style={{ marginTop: 10 }}
+              text="Designers"
+              status="info"
+              
+            />
+            <Button
+              style={{ marginTop: 10 }}
+              text="Pintores"
+              status="info"
+              
+            />
+            <Button
+              style={{ marginTop: 10 }}
+              text="Cuidadores"
+              status="info"
+              
+            />
+            <Button
+              style={{ marginTop: 10 }}
+              text="Eletricistas"
+              status="info"
+              
             />
           </SectionContent>
         </Section>

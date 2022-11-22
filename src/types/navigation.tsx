@@ -14,3 +14,11 @@ export type MainTabsParamList = {
 	Profile: undefined;
 	About: undefined;
 };
+
+export type ServicesPagesParamList = {
+	Pedreiros: undefined;
+	Designers: undefined;
+	Cuidadores: undefined;
+	Pintores: undefined;
+	Eletricista: undefined;
+}

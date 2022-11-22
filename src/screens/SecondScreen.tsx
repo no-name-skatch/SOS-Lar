@@ -13,7 +13,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 // import { CoffeeHeader } from "../components/Header/Header";
 import { SeparatorItem } from "../components/SeparatorItem/SeparatorItem";
-import { Funcionario, funcList } from "../data/funcList";
+import { Funcionario, pedreiros } from "../data/funcList";
 import { RenderFunc } from "../components/RenderFunc";
 
 export default function ({
@@ -27,7 +27,7 @@ export default function ({
   return (
     <Layout>
       <TopNav
-        middleContent="SoS Lar"
+        middleContent="Pedreiros"
         leftContent={
           <Ionicons
             name="chevron-back"
@@ -59,7 +59,7 @@ export default function ({
       >
         <FlatList
           ItemSeparatorComponent={SeparatorItem}
-          data={funcList}
+          data={pedreiros}
           keyExtractor={(item) => item.name}
           renderItem={renderItem}
         />
